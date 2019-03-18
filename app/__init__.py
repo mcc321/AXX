@@ -15,7 +15,6 @@ db=SQLAlchemy()
 login_manager=LoginManager()
 login_manager.session_protection = 'strong'#设置验证密码强度
 
-
 def authenticate(username, password):
     user = User.query.filter_by(name=username).first()
     if user and safe_str_cmp(user.password.encode('utf-8'), password.encode('utf-8')):
@@ -57,7 +56,7 @@ def create_app():
     moment.init_app(app)
     login_manager.init_app(app)
 
-    
+
 
     #数据库初始化
     with app.app_context():

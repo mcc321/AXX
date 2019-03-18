@@ -151,10 +151,6 @@ def form_analysis(form):
             dic = dict()
             username=form.username.data
             password=form.password.data
-            if form.email.data:
-                email=form.email.data
-                dic['email'] = email
-            #如有除username和password的属性，在这里添加
             dic['username']=username
             dic['password']=password
             return dic
@@ -176,3 +172,7 @@ def mcc_print(info):
 def get_app_config(attrib):
     app=current_app._get_current_object()
     return app[attrib]
+
+
+def make_payload(StatusCode,payload,info):
+    return {"StatusCode":StatusCode,"payload":payload,"info":info}
