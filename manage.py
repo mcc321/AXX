@@ -1,6 +1,6 @@
 import os 
 from app import create_app , db
-from app.models import User , Article , Comment , Role ,Permission
+from app.models import User , Comment , Role
 from flask_script import Manager , Shell,Server
 from flask_migrate import Migrate , MigrateCommand
 from flask import redirect,url_for,render_template

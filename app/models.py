@@ -61,6 +61,10 @@ class CommentForm(FlaskForm):
         else:
             return False
 
+user_search=db.Table('user_search',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('search_id', db.Integer, db.ForeignKey('search_information.id')))
+
 
 class User(UserMixin,db.Model):
     __tablename__ = 'user'
@@ -69,10 +73,10 @@ class User(UserMixin,db.Model):
     name = db.Column(db.String(30),unique=True)
     password = db.Column(db.String(100))
     email = db.Column(db.String(30),unique=True)
-    icon = db.Column(db.String(50),default="https://github.com/mcc321/mcc/blob/master/img/9.jpg?raw=true")
+    icon = db.Column(db.String(200),default="https://github.com/mcc321/mcc/blob/master/img/9.jpg?raw=true")
     confirmed = db.Column(db.Boolean,default=False)
 
-    search_information = db.relationship('Search_information', backref = 'user', lazy='dynamic',cascade='save-update,delete,merge')
+    search_information = db.relationship('Search_information', backref = 'user', lazy='dynamic',cascade='save-update,delete,merge',secondary=user_search)
     comment = db.relationship('Comment',backref = 'user', lazy='dynamic',cascade='save-update,delete,merge')
     message = db.relationship('Message',backref = 'user', lazy='dynamic',cascade='save-update,delete,merge')
 
@@ -81,20 +85,30 @@ class User(UserMixin,db.Model):
 
     def __init__(self,**kwargs):
         super().__init__()
-        self.name = kwargs['name']
-        self.password = generate_password_hash(kwargs['name'])
-        self.email = kwargs['email']
-        self.icon = kwargs['icon']
-        self.confirmed = kwargs['confirmed']
+        if 'name' in kwargs:
+            self.name = kwargs['name']
+        if 'password' in kwargs:
+            self.password = generate_password_hash(kwargs['password'])
+        if 'email' in kwargs:
+            self.email = kwargs['email']
+        if 'icon' in kwargs:
+            self.icon = kwargs['icon']
+        if 'confirmed' in kwargs:
+            self.confirmed = bool(kwargs['confirmed'])
         if 'search_information' in kwargs:
-
-            self.search_information.append(Search_information(**kwargs))
+            tmp = Search_information.query.filter_by(search_information=kwargs['search_information']).first()
+            if tmp:
+                tmp.search_time += 1
+                if tmp not in self.search_information:
+                    self.search_information.append(tmp)
+            else:
+                self.search_information.append(Search_information(**kwargs))
         if 'comment_body' in kwargs and 'comment_course_id' in kwargs:
             self.comment.append(Comment(**kwargs))
         if 'message_content' in kwargs and 'message_from_user_name' in kwargs:
             self.message.append(Message(**kwargs))
-        if 'role_role' in kwargs:
-            self.Role=Role.query.filter_by(role_role=kwargs['role_role'])
+        if 'role' in kwargs:
+            self.Role=Role.query.filter_by(role=kwargs['role'])
 
 
     def generate_activate_token(self, expires_in=3600):
@@ -142,8 +156,11 @@ class Message(db.Model):
     message_data = db.Column(db.DateTime,default = datetime.datetime.utcnow())
     message_user_id = db.Column(db.Integer , db.ForeignKey('user.id'))
     def __init__(self,**kwargs):
-        self.message_content=kwargs['message_content']
-        self.message_from_user_name = kwargs['message_from_user_name']
+        super().__init__()
+        if 'message_content' in kwargs:
+            self.message_content=kwargs['message_content']
+        if 'message_from_user_name' in kwargs:
+            self.message_from_user_name = kwargs['message_from_user_name']
     def get_message(self):
         dic={'message_content':self.message_content ,'message_from_user_name':self.message_from_user_name ,'message_data':self.message_data}
         return dic
@@ -156,23 +173,23 @@ class Role(db.Model):
     __tablename__='role'
     __table_args__ = {'mysql_charset': 'utf8'}
     id = db.Column(db.Integer,primary_key=True,autoincrement=True)
-    role_role=db.Column(db.String(20),unique=True)
+    role = db.Column(db.String(50),unique=True)
     user = db.relationship('User',backref = 'role', lazy='dynamic')
     def __init__(self,**kwargs):
-        self.role_role=kwargs['role_role']
+        super().__init__()
+        if 'role' in kwargs:
+            self.role=kwargs['role']
 
     @staticmethod
     def insert_roles():
-        roles=['annoyance','user','admin','super_admin']
+        roles=["annoyance","user","admin","super_admin"]
         for r in roles:
-            role = Role.query.filter_by(role_role=r).first()
+            role = Role.query.filter_by(role=r).first()
             if role is None:
-                role = Role(role_role=r)
-                db.session.add(role)
-                try:
-                    db.session.commit()
-                except SQLAlchemyError as e:
-                    db.session.rollback()
+                role = Role(role=r)
+            db.session.add(role)
+            db.session.commit()
+
 
 
 
@@ -188,15 +205,18 @@ class Comment(db.Model):
 
 
     def __init__(self,**kwargs):
-        self.comment_body=kwargs['comment_body']
-        self.comment_course_id=kwargs['comment_course_id']
+        super().__init__()
+        if 'comment_body' in kwargs:
+            self.comment_body=kwargs['comment_body']
+        if 'comment_course_id' in kwargs:
+            self.comment_course_id=int(kwargs['comment_course_id'])
 
     @staticmethod
     def on_changed_body(target,value,oldvalue,initiator):
         allowed_tags = ['a', 'abbr', 'acronym', 'b', 'code', 'em', 'i','strong']
         target.body_html = bleach.linkify(bleach.clean(markdown(value, output_format='html'),
                             tags=allowed_tags, strip=True))
-db.event.listen(Comment.body, 'set', Comment.on_changed_body)
+db.event.listen(Comment.comment_body, 'set', Comment.on_changed_body)
 
 
 
@@ -211,7 +231,9 @@ class Search_information(db.Model):
 
     search_user_id = db.Column(db.Integer , db.ForeignKey('user.id'))
     def __init__(self,**kwargs):
-        self.search_information=kwargs['search_information']
+        super().__init__()
+        if 'search_information' in kwargs:
+            self.search_information=kwargs['search_information']
     def get_popular_search_information(self):
         tmp = Search_information.query.order_by(Search_information.search_time.desc()).all() ##反向排序
         search_information = []
@@ -231,30 +253,43 @@ class Course(db.Model):
     course_name = db.Column(db.String(20),nullable=False)
     course_type = db.Column(db.String(20),nullable=False)
     course_score = db.Column(db.Integer,nullable=False)
-    course_target = db.Column(db.String(40),nullable=False)
+    course_target = db.Column(db.String(50),nullable=False)
     course_address = db.Column(db.String(50),nullable=False)
+    course_class_num = db.Column(db.String(50),nullable=False)
     course_time_start = db.Column(db.Integer,nullable=False)
     course_time_end = db.Column(db.Integer,nullable=False)
     course_attr = db.Column(db.Integer,nullable=False)
     comment = db.relationship('Comment',backref = 'course', lazy='dynamic',cascade='save-update,delete,merge')
 
     def __init__(self,**kwargs):
-        self.course_name=kwargs['course_name']
-        self.course_type = kwargs['course_type']
-        self.course_score = kwargs['course_score']
-        self.course_target = kwargs['course_target']
-        self.course_address = kwargs['course_address']
-        self.course_time_start = kwargs['course_time_start']
-        self.course_time_end = kwargs['course_time_end']
-        self.course_attr = kwargs['course_attr']
+        super().__init__()
+        addr=['东九楼','西十二楼']
+        targets = ['全校本科生', '硕博', '全校学生']
+        if 'course_name' in kwargs:
+            self.course_name=kwargs['course_name']
+        if 'course_type' in kwargs:
+            self.course_type = kwargs['course_type']
+        if 'course_score' in kwargs:
+            self.course_score = int(kwargs['course_score'])
+        if 'course_target' in kwargs:
+            self.course_target = targets[int(kwargs['course_target'])]
+        if 'course_address' in kwargs:
+            self.course_address = addr[int(kwargs['course_address'])]
+        if 'course_class_num' in kwargs:
+            self.course_class_num = kwargs['course_class_num']
+        if 'course_time_start' in kwargs:
+            self.course_time_start = int(kwargs['course_time_start'])
+        if 'course_time_end' in kwargs:
+            self.course_time_end = int(kwargs['course_time_end'])
+        if 'course_attr' in kwargs:
+            self.course_attr = int(kwargs['course_attr'])
     def get_attr(self):
         attr = []
-        if self.course_attr&0x1:
+        if self.course_attr & 0x1:
             attr.append("点名")
         if self.course_attr & 0x2:
             attr.append("签到")
         return attr
-
 
 
 
