@@ -17,7 +17,7 @@ login_manager.session_protection = 'strong'#设置验证密码强度
 
 def authenticate(username, password):
     user = User.query.filter_by(name=username).first()
-    if user and user.check_password(password):
+    if user and user.check_password(password) and user.confirmed:
         return user
     else:
         return jsonify({"StatusCode":400,"info":"登陆错误"})
