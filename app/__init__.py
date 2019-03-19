@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Flask , render_template,jsonify
+from flask import Flask , render_template,jsonify,session
 from flask_mail import Mail
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
@@ -7,7 +7,7 @@ import mysql.connector
 import sys , os
 from flask_login import LoginManager
 from flask_jwt import JWT, jwt_required, current_identity
-from werkzeug.security import safe_str_cmp
+from datetime import timedelta
 
 mail=Mail()
 moment=Moment()
@@ -17,9 +17,10 @@ login_manager.session_protection = 'strong'#设置验证密码强度
 
 def authenticate(username, password):
     user = User.query.filter_by(name=username).first()
-    if user and safe_str_cmp(user.password.encode('utf-8'), password.encode('utf-8')):
+    if user and user.check_password(password):
         return user
-    return None
+    else:
+        return jsonify({"StatusCode":400,"info":"登陆错误"})
 
 
 def identity(payload):
@@ -42,7 +43,8 @@ def create_app():
     app.register_blueprint(main.main , url_prefix='/main')
     app.register_blueprint(auth.auth , url_prefix='/auth')
     jwt = JWT(app , authenticate , identity)
-
+    app.permanent_session_lifetime = timedelta(minutes=5)
+    login_manager.remember_cookie_duration = timedelta(days=1)
 
 
 
@@ -85,6 +87,7 @@ def create_app():
         db_course_push(**dic)
         db_user_push(**dic)
     return app
+    session.permanent = True
 
 
 

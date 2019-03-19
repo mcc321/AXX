@@ -12,11 +12,11 @@ from sqlalchemy.exc import SQLAlchemyError
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-
 #Login_manager回调函数
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(user_id)
+
 
 #处理未登录情况
 @login_manager.unauthorized_handler
@@ -79,8 +79,6 @@ class User(UserMixin,db.Model):
     search_information = db.relationship('Search_information', backref = 'user', lazy='dynamic',cascade='save-update,delete,merge',secondary=user_search)
     comment = db.relationship('Comment',backref = 'user', lazy='dynamic',cascade='save-update,delete,merge')
     message = db.relationship('Message',backref = 'user', lazy='dynamic',cascade='save-update,delete,merge')
-
-
     role_id = db.Column(db.Integer , db.ForeignKey('role.id'))
 
     def __init__(self,**kwargs):

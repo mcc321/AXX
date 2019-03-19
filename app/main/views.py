@@ -7,7 +7,7 @@ from flask import url_for,redirect,jsonify,render_template , current_app
 import sys
 from ..auth.func import *
 from ..util.wraps import *
-
+from flask_jwt import JWT, jwt_required, current_identity
 
 
 
@@ -398,48 +398,20 @@ from ..util.wraps import *
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #-----------------------------------------------测试模块---------------------------------------------------
 
-@main.route('/test')
+@main.route('/test1')
 @login_required
 def test():
-    mcc_print('login')
-    return render_template('ForWindowsIndex.html')
+    user=current_user._get_current_object()
+    return jsonify({"StatusCode":200,"name":user.name,"info":'测试成功'})
 
 
-
+@main.route('/test2')
+@jwt_required()
+def protected():
+    user=User.query.filter_by(id=current_identity.id).first()
+    return jsonify({'StatusCode':200,'username':user.name,'info':'测试成功'})
 
 
 

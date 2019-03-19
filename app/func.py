@@ -119,10 +119,6 @@ def  db_course_push(**kwargs):
 #----------------------------------------------------------------
 #使用函数类，自定义的函数放这里，尽量通俗易懂，尽量简单
 #----------------------------------------------------------------
-# def json_loads():
-#     pre_data=request.get_data().decode('utf-8')
-#     dic=json.loads(pre_data)
-#     return dic
 def json_loads():
     fields = [k for k in request.values]
     values = [request.values[k] for k in request.values]
@@ -172,7 +168,3 @@ def mcc_print(info):
 def get_app_config(attrib):
     app=current_app._get_current_object()
     return app[attrib]
-
-
-def make_payload(StatusCode,payload,info):
-    return {"StatusCode":StatusCode,"payload":payload,"info":info}

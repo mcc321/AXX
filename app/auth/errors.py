@@ -1,11 +1,11 @@
-from flask import render_template
+from flask import jsonify
 from . import admin
 from . import auth
  
 @auth.app_errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+    return jsonify({"StatusCode":400,"info":"客户端请求错误"})
  
 @auth.app_errorhandler(500)
 def internal_server_error(e):
-    return render_template('500.html'), 500
+    return jsonify({"StatusCode": 400, "info": "服务端错误"})

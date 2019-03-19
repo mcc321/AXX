@@ -16,6 +16,7 @@ SECRET_KEY = 'super-secret'
 
 #JWT设置
 JWT_AUTH_URL_RULE = '/login'
+JWT_SECRET_KEY = 'mcc'
 
 #是否开启debug
 DEBUG = True
