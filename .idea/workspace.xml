@@ -4,7 +4,9 @@
     <list default="true" id="55adbe4a-8451-4546-a2ce-e63b884bce80" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/production.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/production.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/func.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/func.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,13 +44,16 @@
     </expand>
     <select />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="AXX" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
-              <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+              <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
               <folding>
                 <element signature="e#24#81#0" expanded="true" />
               </folding>
@@ -56,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="152">
-              <caret line="76" column="13" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="13" />
+              <caret line="305" column="87" selection-start-line="305" selection-start-column="87" selection-end-line="305" selection-end-column="87" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
@@ -69,9 +74,34 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/func.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="61" column="82" lean-forward="true" selection-start-line="61" selection-start-column="82" selection-end-line="61" selection-end-column="82" />
+              <folding>
+                <element signature="e#0#72#0" expanded="true" />
+                <element signature="e#1756#1995#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/manage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="24" column="63" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/auth/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
+            <state relative-caret-position="392">
               <caret line="67" column="44" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="44" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -113,15 +143,15 @@
         <option value="$PROJECT_DIR$/app/config/development.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/auth/views.py" />
-        <option value="$PROJECT_DIR$/manage.py" />
-        <option value="$PROJECT_DIR$/app/models.py" />
-        <option value="$PROJECT_DIR$/app/func.py" />
         <option value="$PROJECT_DIR$/app/auth/errors.py" />
         <option value="$PROJECT_DIR$/app/main/errors.py" />
         <option value="$PROJECT_DIR$/app/util/wraps.py" />
         <option value="$PROJECT_DIR$/app/main/views.py" />
         <option value="$PROJECT_DIR$/app/config/production.py" />
+        <option value="$PROJECT_DIR$/app/func.py" />
         <option value="$PROJECT_DIR$/app/__init__.py" />
+        <option value="$PROJECT_DIR$/app/models.py" />
+        <option value="$PROJECT_DIR$/manage.py" />
       </list>
     </option>
   </component>
@@ -229,7 +259,8 @@
       <workItem from="1552922801657" duration="2700000" />
       <workItem from="1552990808070" duration="7503000" />
       <workItem from="1553000675650" duration="530000" />
-      <workItem from="1553008017401" duration="2008000" />
+      <workItem from="1553008017401" duration="3002000" />
+      <workItem from="1553087903423" duration="6805000" />
     </task>
     <task id="LOCAL-00001" summary="完成了登陆模块的调试，明天准备写相关的页面路由">
       <created>1553000254982</created>
@@ -238,11 +269,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553000254982</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="增加了说明文档">
+      <created>1553010427289</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1553010427289</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65336000" />
+    <option name="totallyTimeSpent" value="73135000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -257,11 +295,11 @@
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2069523" />
+      <window_info id="Favorites" order="0" sideWeight="0.502193" side_tool="true" weight="0.21018593" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49780703" visible="true" weight="0.21018593" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" weight="0.32867134" />
-      <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.1958042" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.2027972" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="调试" order="4" />
@@ -287,7 +325,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="完成了登陆模块的调试，明天准备写相关的页面路由" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成了登陆模块的调试，明天准备写相关的页面路由" />
+    <MESSAGE value="增加了说明文档" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加了说明文档" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/requirements/prod.txt">
@@ -367,34 +406,6 @@
     <entry file="das://93b1ec3e-55c4-4526-941d-b729ccab1d74/collation/armscii8_bin" />
     <entry file="das://93b1ec3e-55c4-4526-941d-b729ccab1d74/collation/armscii8_general_ci" />
     <entry file="das://93b1ec3e-55c4-4526-941d-b729ccab1d74/collation/ascii_general_ci" />
-    <entry file="das://2ebfccae-d2e1-4a7f-8c8e-f39a5c98a85b/schema/axx/table/comment">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://2ebfccae-d2e1-4a7f-8c8e-f39a5c98a85b/schema/axx/table/message">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://2ebfccae-d2e1-4a7f-8c8e-f39a5c98a85b/schema/axx/table/search_information">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://2ebfccae-d2e1-4a7f-8c8e-f39a5c98a85b/schema/axx/table/course">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2ebfccae-d2e1-4a7f-8c8e-f39a5c98a85b/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -414,31 +425,10 @@
     <entry file="file://$PROJECT_DIR$/app/auth/templates/index.html.bakbak">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="das://2ebfccae-d2e1-4a7f-8c8e-f39a5c98a85b/schema/axx/table/role">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/development.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://2ebfccae-d2e1-4a7f-8c8e-f39a5c98a85b/schema/axx/table/user">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -488,16 +478,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="227" column="32" selection-start-line="227" selection-start-column="32" selection-end-line="227" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/func.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-77">
-          <caret line="143" column="4" selection-start-line="143" selection-start-column="4" selection-end-line="143" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#72#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -562,13 +542,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://2ebfccae-d2e1-4a7f-8c8e-f39a5c98a85b/schema/axx/table/user_search">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/production.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -583,19 +556,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-          <folding>
-            <element signature="e#24#81#0" expanded="true" />
-          </folding>
+    <entry file="das://2ebfccae-d2e1-4a7f-8c8e-f39a5c98a85b/schema/axx/table/search_information">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2ebfccae-d2e1-4a7f-8c8e-f39a5c98a85b/schema/axx/table/user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2ebfccae-d2e1-4a7f-8c8e-f39a5c98a85b/schema/axx/table/user_search">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2ebfccae-d2e1-4a7f-8c8e-f39a5c98a85b/schema/axx/table/role">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2ebfccae-d2e1-4a7f-8c8e-f39a5c98a85b/schema/axx/table/course">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2ebfccae-d2e1-4a7f-8c8e-f39a5c98a85b/schema/axx/table/comment">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2ebfccae-d2e1-4a7f-8c8e-f39a5c98a85b/schema/axx/table/message">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/auth/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
+        <state relative-caret-position="392">
           <caret line="67" column="44" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="44" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -603,12 +615,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
+          <folding>
+            <element signature="e#24#81#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
-          <caret line="76" column="13" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="13" />
+          <caret line="305" column="87" selection-start-line="305" selection-start-column="87" selection-end-line="305" selection-end-column="87" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/func.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="61" column="82" lean-forward="true" selection-start-line="61" selection-start-column="82" selection-end-line="61" selection-end-column="82" />
+          <folding>
+            <element signature="e#0#72#0" expanded="true" />
+            <element signature="e#1756#1995#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="24" column="63" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>

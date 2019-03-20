@@ -42,7 +42,7 @@ def db_user_push(**kwargs):
             if 'password' in kwargs:
                 user.password=generate_password_hash(kwargs['password'])
             if 'confirmed' in kwargs:
-                user.confirmed = kwargs['confirmed']
+                user.confirmed = bool(kwargs['confirmed'])
             if 'email' in kwargs:
                 user.email = kwargs['email']
             if 'icon' in kwargs:
@@ -57,12 +57,17 @@ def db_user_push(**kwargs):
                         user.search_information.append(Search_information(**kwargs))
                 else:
                     user.search_information.append(Search_information(**kwargs))
-            if 'comment_body' in kwargs and 'comment_course_id' in kwargs:
+            if 'comment_body' in kwargs and 'comment_course_id' in kwargs and 'comment_on_user_id' in kwargs:
                 user.comment.append(Comment(**kwargs))
             if 'message_content' in kwargs and 'message_from_user_name' in kwargs:
-                user.message.append(Message(**kwargs))
+                user.message.append(Message(message_content=kwargs['message_content'],message_from_name=kwargs['message_from_name']))
             if 'role' in kwargs:
                 user.Role = Role.query.filter_by(role=kwargs['role']).first()
+            if 'course_name' in kwargs and 'course_name' in kwargs and 'course_score' in kwargs and 'course_target' in kwargs \
+                    and 'course_address' in kwargs and 'course_class_num' in kwargs and 'course_time_start' in kwargs \
+                    and 'course_time_end' in kwargs and 'course_attr' in kwargs and 'course_teacher_name' in kwargs \
+                    and 'course_check_type' in kwargs:
+                user.course.append(Course(**kwargs))
         db.session.add(user)
         db.session.commit()
         return True
@@ -89,6 +94,9 @@ def db_comment_delete(id):
 def  db_course_push(**kwargs):
     addr = ['东九楼', '西十二楼']
     targets = ['全校本科生', '硕博', '全校学生']
+    course_check_types = ['论文', '考试']
+    attrs = ['点名', '签到', '不点名不签到']
+    course_types = ['沟通与管理']
     if 'course_name' in kwargs:
         course=Course.query.filter_by(course_name=kwargs['course_name']).first()
         if course is None:
@@ -97,7 +105,7 @@ def  db_course_push(**kwargs):
             if 'course_name' in kwargs:
                 course.course_name=kwargs['course_name']
             if 'course_type' in kwargs:
-                course.course_type = kwargs['course_type']
+                course.course_type = course_types[int(kwargs['course_type'])]
             if 'course_score' in kwargs:
                 course.course_score = int(kwargs['course_score'])
             if 'course_target' in kwargs:
@@ -111,7 +119,10 @@ def  db_course_push(**kwargs):
             if 'course_time_end' in kwargs:
                 course.course_time_end = int(kwargs['course_time_end'])
             if 'course_attr' in kwargs:
-                course.course_attr = int(kwargs['course_attr'])
+                course.course_attr = attrs[int(kwargs['course_attr'])]
+            if 'course_check_type' in kwargs:
+                course.course_check_type = course_check_types[int(kwargs['course_check_type'])]
+
         db.session.add(course)
         session_commit()
     else:
@@ -125,6 +136,8 @@ def json_loads():
     data = dict(zip(fields, values))
     if 'comment_course_id' in data:
         data['comment_course_id']=int(data['comment_course_id'])
+    if 'comment_on_user_id' in data:
+        data['comment_on_user_id'] = int(data['comment_on_user_id'])
     if 'course_score' in data:
         data['course_score']=int(data['course_score'])
     if 'course_time_start' in data:
@@ -137,6 +150,12 @@ def json_loads():
         data['course_target']=int(data['course_target'])
     if 'course_address' in data:
         data['course_address'] = int(data['course_address'])
+    if 'course_type' in data:
+        data['course_type'] = int(data['course_type'])
+    if 'course_check_type' in data:
+        data['course_check_type'] = int(data['course_check_type'])
+
+
     return data
 
 

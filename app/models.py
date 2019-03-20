@@ -79,6 +79,7 @@ class User(UserMixin,db.Model):
     search_information = db.relationship('Search_information', backref = 'user', lazy='dynamic',cascade='save-update,delete,merge',secondary=user_search)
     comment = db.relationship('Comment',backref = 'user', lazy='dynamic',cascade='save-update,delete,merge')
     message = db.relationship('Message',backref = 'user', lazy='dynamic',cascade='save-update,delete,merge')
+    course = db.relationship('Course',backref = 'user', lazy='dynamic',cascade='save-update,delete,merge')
     role_id = db.Column(db.Integer , db.ForeignKey('role.id'))
 
     def __init__(self,**kwargs):
@@ -101,12 +102,17 @@ class User(UserMixin,db.Model):
                     self.search_information.append(tmp)
             else:
                 self.search_information.append(Search_information(**kwargs))
-        if 'comment_body' in kwargs and 'comment_course_id' in kwargs:
+        if 'comment_body' in kwargs and 'comment_course_id' in kwargs and 'comment_on_user_id' in kwargs:
             self.comment.append(Comment(**kwargs))
-        if 'message_content' in kwargs and 'message_from_user_name' in kwargs:
+        if 'message_content' in kwargs and 'message_from_name' in kwargs:
             self.message.append(Message(**kwargs))
         if 'role' in kwargs:
             self.Role=Role.query.filter_by(role=kwargs['role'])
+        if 'course_name' in kwargs and 'course_name' in kwargs and 'course_score' in kwargs and 'course_target' in kwargs \
+            and 'course_address' in kwargs and 'course_class_num' in kwargs and 'course_time_start' in kwargs \
+            and 'course_time_end' in kwargs and 'course_attr' in kwargs and 'course_teacher_name' in kwargs \
+            and 'course_check_type' in kwargs:
+            self.course.append(Course(**kwargs))
 
 
     def generate_activate_token(self, expires_in=3600):
@@ -149,18 +155,18 @@ class Message(db.Model):
     __tablename__ = 'message'
     __table_args__ = {'mysql_charset': 'utf8'}
     id = db.Column(db.Integer,primary_key=True,autoincrement=True)
-    message_content = db.Column(db.Text,nullable=True)
-    message_from_user_name = db.Column(db.String(30),nullable=False)
+    message_content = db.Column(db.Text,nullable=False)
+    message_from_name = db.Column(db.String(30),nullable=False)
     message_data = db.Column(db.DateTime,default = datetime.datetime.utcnow())
     message_user_id = db.Column(db.Integer , db.ForeignKey('user.id'))
     def __init__(self,**kwargs):
         super().__init__()
         if 'message_content' in kwargs:
-            self.message_content=kwargs['message_content']
-        if 'message_from_user_name' in kwargs:
-            self.message_from_user_name = kwargs['message_from_user_name']
+            self.message_content = kwargs['message_content']
+        if 'message_from_name' in kwargs:
+            self.message_from_name = kwargs['message_from_name']
     def get_message(self):
-        dic={'message_content':self.message_content ,'message_from_user_name':self.message_from_user_name ,'message_data':self.message_data}
+        dic={'message_content':self.message_content ,'message_from_name':self.message_from_name ,'message_data':self.message_data}
         return dic
 
 
@@ -198,6 +204,7 @@ class Comment(db.Model):
     id = db.Column(db.Integer,primary_key = True,autoincrement=True)
     comment_body =  db.Column(db.Text,nullable=False)
     comment_date = db.Column(db.DateTime , index = True , default = datetime.datetime.utcnow())
+    comment_on_user_id = db.Column(db.Integer,nullable=False)
     comment_course_id = db.Column(db.Integer, db.ForeignKey('course.id'))
     comment_user_id = db.Column(db.Integer , db.ForeignKey('user.id'))
 
@@ -208,6 +215,8 @@ class Comment(db.Model):
             self.comment_body=kwargs['comment_body']
         if 'comment_course_id' in kwargs:
             self.comment_course_id=int(kwargs['comment_course_id'])
+        if 'comment_on_user_id' in kwargs:
+            self.comment_on_user_id=int(kwargs['comment_on_user_id'])
 
     @staticmethod
     def on_changed_body(target,value,oldvalue,initiator):
@@ -234,9 +243,14 @@ class Search_information(db.Model):
             self.search_information=kwargs['search_information']
     def get_popular_search_information(self):
         tmp = Search_information.query.order_by(Search_information.search_time.desc()).all() ##反向排序
+        tmp_len=len(tmp)
         search_information = []
-        for i in range(10):
-            search_information.append(tmp[i])
+        if tmp_len>=10:
+            for i in range(10):
+                search_information.append(tmp[i])
+        else:
+            for i in range(tmp_len):
+                search_information.append(tmp[i])
         return search_information
 
 
@@ -256,17 +270,22 @@ class Course(db.Model):
     course_class_num = db.Column(db.String(50),nullable=False)
     course_time_start = db.Column(db.Integer,nullable=False)
     course_time_end = db.Column(db.Integer,nullable=False)
-    course_attr = db.Column(db.Integer,nullable=False)
+    course_attr = db.Column(db.String(20),nullable=False)
+    course_teacher_name = db.Column(db.String(20),nullable=False)
+    course_check_type = db.Column(db.String(20),nullable=False)
     comment = db.relationship('Comment',backref = 'course', lazy='dynamic',cascade='save-update,delete,merge')
-
+    course_user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     def __init__(self,**kwargs):
         super().__init__()
         addr=['东九楼','西十二楼']
         targets = ['全校本科生', '硕博', '全校学生']
+        course_check_types=['论文','考试']
+        attrs = ['点名','签到','不点名不签到']
+        course_types=['沟通与管理']
         if 'course_name' in kwargs:
             self.course_name=kwargs['course_name']
         if 'course_type' in kwargs:
-            self.course_type = kwargs['course_type']
+            self.course_type = course_types[int(kwargs['course_type'])]
         if 'course_score' in kwargs:
             self.course_score = int(kwargs['course_score'])
         if 'course_target' in kwargs:
@@ -280,14 +299,12 @@ class Course(db.Model):
         if 'course_time_end' in kwargs:
             self.course_time_end = int(kwargs['course_time_end'])
         if 'course_attr' in kwargs:
-            self.course_attr = int(kwargs['course_attr'])
-    def get_attr(self):
-        attr = []
-        if self.course_attr & 0x1:
-            attr.append("点名")
-        if self.course_attr & 0x2:
-            attr.append("签到")
-        return attr
+            self.course_attr = attrs[int(kwargs['course_attr'])]
+        if 'course_teacher_name' in kwargs:
+            self.course_teacher_name=kwargs['course_teacher_name']
+        if 'course_check_type' in kwargs:
+            self.course_check_type=course_check_types[int(kwargs['course_check_type'])]
+
 
 
 
