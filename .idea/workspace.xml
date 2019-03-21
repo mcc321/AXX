@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55adbe4a-8451-4546-a2ce-e63b884bce80" name="默认更改列表" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,10 +30,6 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="axx@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="mcc_mysql" type="feb32156:DbDataSourceImpl" />
       </path>
     </expand>
     <select />
@@ -89,7 +84,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/auth/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
+            <state relative-caret-position="-437">
               <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -306,7 +301,7 @@
       <workItem from="1553000675650" duration="530000" />
       <workItem from="1553008017401" duration="3002000" />
       <workItem from="1553087903423" duration="7113000" />
-      <workItem from="1553125549469" duration="5066000" />
+      <workItem from="1553125549469" duration="5679000" />
     </task>
     <task id="LOCAL-00001" summary="完成了登陆模块的调试，明天准备写相关的页面路由">
       <created>1553000254982</created>
@@ -340,7 +335,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78509000" />
+    <option name="totallyTimeSpent" value="79122000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -352,11 +347,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1295" height="704" extended-state="7" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.502193" side_tool="true" weight="0.21018593" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49780703" visible="true" weight="0.21341956" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49780703" visible="true" weight="0.21341956" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" weight="0.32867134" />
       <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.20979021" />
@@ -373,7 +367,7 @@
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="13" weight="0.32867134" />
       <window_info anchor="bottom" id="Database Console" order="14" weight="0.32867134" />
-      <window_info anchor="right" id="Database" order="0" visible="true" weight="0.25303152" />
+      <window_info active="true" anchor="right" id="Database" order="0" visible="true" weight="0.25303152" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="SciView" order="2" weight="0.32983023" />
       <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
@@ -723,7 +717,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/auth/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
+        <state relative-caret-position="-437">
           <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />

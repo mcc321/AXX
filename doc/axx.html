@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>axx</title>
+	<meta name="date" content="Thu, 21 Mar 2019 09:36:38 +0800">
+	<meta name="generator" content="MySQL-Front 5.3  (Build 4.43)">
+	<style type="text/css"><!--
+		body {font-family: Arial,Helvetica,sans-serif; font-size: 12px;}
+		h1 {font-size: 18px; text-decoration: bold;}
+		h2 {font-size: 16px; text-decoration: bold;}
+		h3 {font-size: 14px; text-decoration: bold;}
+		th,
+		td {font-size: 12px; border-color: #000000; border-style: solid; border-width: 1px; padding: 1px; font-weight: normal;}
+		code {font-size: 12px;}
+		.TableObject {border-collapse: collapse; border-color: #000000; font-family: Microsoft Sans Serif}
+		.TableData {border-collapse: collapse; border-color: #000000; font-family: Microsoft Sans Serif}
+		.TableHeader {border-color: #000000; text-decoration: bold; background-color: #e0e0e0;}
+		.StructureHeader {padding-left: 5px; text-align: left; border-color: #000000; text-decoration: bold;}
+		.Structure {text-align: left; border-color: #aaaaaa;}
+		.odd {}
+		.even {}
+		.DataHeader {padding-left: 5px; text-align: left; border-color: #000000; background-color: #e0e0e0;}
+		.Null {color: #999999;}
+		.PrimaryKey {font-weight: bold;}
+		.RightAlign {text-align: right;}
+	--></style>
+</head>
+<body>
+<h1 class="DatabaseTitle">数据库: axx</h1>
+<h2>表格: comment</h2>
+<h3>索引:</h3>
+<table border="0" cellspacing="0" summary="comment" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>属性</th><th>备注</th></tr>
+	<tr class="Structure"><td  class="PrimaryKey">主索引</td><td>id</td><td>unique</td><td></td></tr>
+	<tr class="Structure"><td >comment_course_id</td><td>comment_course_id</td><td>&nbsp;</td><td></td></tr>
+	<tr class="Structure"><td >comment_user_id</td><td>comment_user_id</td><td>&nbsp;</td><td></td></tr>
+	<tr class="Structure"><td >ix_comment_comment_date</td><td>comment_date</td><td>&nbsp;</td><td></td></tr>
+</table><br>
+<h3>字段:</h3>
+<table border="0" cellspacing="0" summary="comment" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>空</th><th>默认值</th><th>属性</th><th>备注</th></tr>
+	<tr class="Structure"><td class="PrimaryKey">id</td><td>int(11)</td><td>否</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>comment_body</td><td>text</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>comment_date</td><td>datetime</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>comment_on_user_id</td><td>int(11)</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>comment_course_id</td><td>int(11)</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>comment_user_id</td><td>int(11)</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</table><br>
+<h3>约束:</h3>
+<table border="0" cellspacing="0" summary="comment" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>属性</th></tr>
+	<tr><th>comment_ibfk_1</th><td>comment_course_id -&gt; course.id</td><td></td></tr>
+	<tr><th>comment_ibfk_2</th><td>comment_user_id -&gt; user.id</td><td></td></tr>
+</table><br>
+<h3>数据:</h3>
+<table border="0" cellspacing="0" summary="comment" class="TableData">
+	<tr class="TableHeader"><th class="DataHeader PrimaryKey">id</th><th class="DataHeader">comment_body</th><th class="DataHeader">comment_date</th><th class="DataHeader">comment_on_user_id</th><th class="DataHeader">comment_course_id</th><th class="DataHeader">comment_user_id</th></tr>
+	<tr class="Data odd"><th class="PrimaryKey RightAlign">1</th><td class="">&lt;MEMO&gt;</td><td class="">2019-03-21 00:30:13</td><td class="RightAlign">1</td><td class="RightAlign">1</td><td class="RightAlign">1</td></tr>
+	<tr class="Data even"><th class="PrimaryKey RightAlign">2</th><td class="">&lt;MEMO&gt;</td><td class="">2019-03-21 00:30:37</td><td class="RightAlign">1</td><td class="RightAlign">1</td><td class="RightAlign">1</td></tr>
+	<tr class="Data odd"><th class="PrimaryKey RightAlign">3</th><td class="">&lt;MEMO&gt;</td><td class="">2019-03-21 00:47:24</td><td class="RightAlign">1</td><td class="RightAlign">1</td><td class="RightAlign">1</td></tr>
+	<tr class="Data even"><th class="PrimaryKey RightAlign">4</th><td class="">&lt;MEMO&gt;</td><td class="">2019-03-21 00:47:46</td><td class="RightAlign">1</td><td class="RightAlign">1</td><td class="RightAlign">1</td></tr>
+	<tr class="Data odd"><th class="PrimaryKey RightAlign">5</th><td class="">&lt;MEMO&gt;</td><td class="">2019-03-21 00:54:27</td><td class="RightAlign">1</td><td class="RightAlign">1</td><td class="RightAlign">1</td></tr>
+	<tr class="Data even"><th class="PrimaryKey RightAlign">6</th><td class="">&lt;MEMO&gt;</td><td class="">2019-03-21 00:54:49</td><td class="RightAlign">1</td><td class="RightAlign">1</td><td class="RightAlign">1</td></tr>
+	<tr class="Data odd"><th class="PrimaryKey RightAlign">7</th><td class="">&lt;MEMO&gt;</td><td class="">2019-03-21 00:58:02</td><td class="RightAlign">1</td><td class="RightAlign">1</td><td class="RightAlign">1</td></tr>
+	<tr class="Data even"><th class="PrimaryKey RightAlign">8</th><td class="">&lt;MEMO&gt;</td><td class="">2019-03-21 00:58:23</td><td class="RightAlign">1</td><td class="RightAlign">1</td><td class="RightAlign">1</td></tr>
+	<tr class="Data odd"><th class="PrimaryKey RightAlign">9</th><td class="">&lt;MEMO&gt;</td><td class="">2019-03-21 00:58:55</td><td class="RightAlign">1</td><td class="RightAlign">1</td><td class="RightAlign">1</td></tr>
+</table><br style="page-break-after: always">
+<h2>表格: course</h2>
+<h3>索引:</h3>
+<table border="0" cellspacing="0" summary="course" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>属性</th><th>备注</th></tr>
+	<tr class="Structure"><td  class="PrimaryKey">主索引</td><td>id</td><td>unique</td><td></td></tr>
+	<tr class="Structure"><td >course_user_id</td><td>course_user_id</td><td>&nbsp;</td><td></td></tr>
+</table><br>
+<h3>字段:</h3>
+<table border="0" cellspacing="0" summary="course" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>空</th><th>默认值</th><th>属性</th><th>备注</th></tr>
+	<tr class="Structure"><td class="PrimaryKey">id</td><td>int(11)</td><td>否</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>course_name</td><td>varchar(20)</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>course_type</td><td>varchar(20)</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>course_score</td><td>int(11)</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>course_target</td><td>varchar(50)</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>course_address</td><td>varchar(50)</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>course_class_num</td><td>varchar(50)</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>course_time_start</td><td>int(11)</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>course_time_end</td><td>int(11)</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>course_attr</td><td>varchar(20)</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>course_teacher_name</td><td>varchar(20)</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>course_check_type</td><td>varchar(20)</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>course_user_id</td><td>int(11)</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</table><br>
+<h3>约束:</h3>
+<table border="0" cellspacing="0" summary="course" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>属性</th></tr>
+	<tr><th>course_ibfk_1</th><td>course_user_id -&gt; user.id</td><td></td></tr>
+</table><br>
+<h3>数据:</h3>
+<table border="0" cellspacing="0" summary="course" class="TableData">
+	<tr class="TableHeader"><th class="DataHeader PrimaryKey">id</th><th class="DataHeader">course_name</th><th class="DataHeader">course_type</th><th class="DataHeader">course_score</th><th class="DataHeader">course_target</th><th class="DataHeader">course_address</th><th class="DataHeader">course_class_num</th><th class="DataHeader">course_time_start</th><th class="DataHeader">course_time_end</th><th class="DataHeader">course_attr</th><th class="DataHeader">course_teacher_name</th><th class="DataHeader">course_check_type</th><th class="DataHeader">course_user_id</th></tr>
+	<tr class="Data odd"><th class="PrimaryKey RightAlign">1</th><td class="">幸福感的源泉</td><td class="">沟通与管理</td><td class="RightAlign">2</td><td class="">全校本科生</td><td class="">东九楼</td><td class="">B203</td><td class="RightAlign">3</td><td class="RightAlign">10</td><td class="">不点名不签到</td><td class="">mcc</td><td class="">考试</td><td class="RightAlign">1</td></tr>
+	<tr class="Data even"><th class="PrimaryKey RightAlign">2</th><td class="">幸福感的源泉</td><td class="">沟通与管理</td><td class="RightAlign">2</td><td class="">全校本科生</td><td class="">东九楼</td><td class="">B203</td><td class="RightAlign">3</td><td class="RightAlign">10</td><td class="">不点名不签到</td><td class="">mcc</td><td class="">考试</td><td class="RightAlign">1</td></tr>
+	<tr class="Data odd"><th class="PrimaryKey RightAlign">3</th><td class="">幸福感的源泉</td><td class="">沟通与管理</td><td class="RightAlign">2</td><td class="">全校本科生</td><td class="">东九楼</td><td class="">B203</td><td class="RightAlign">3</td><td class="RightAlign">10</td><td class="">不点名不签到</td><td class="">mcc</td><td class="">考试</td><td class="RightAlign">1</td></tr>
+	<tr class="Data even"><th class="PrimaryKey RightAlign">4</th><td class="">幸福感的源泉</td><td class="">沟通与管理</td><td class="RightAlign">2</td><td class="">全校本科生</td><td class="">东九楼</td><td class="">B203</td><td class="RightAlign">3</td><td class="RightAlign">10</td><td class="">不点名不签到</td><td class="">mcc</td><td class="">考试</td><td class="RightAlign">1</td></tr>
+	<tr class="Data odd"><th class="PrimaryKey RightAlign">5</th><td class="">幸福感的源泉</td><td class="">沟通与管理</td><td class="RightAlign">2</td><td class="">全校本科生</td><td class="">东九楼</td><td class="">B203</td><td class="RightAlign">3</td><td class="RightAlign">10</td><td class="">不点名不签到</td><td class="">mcc</td><td class="">考试</td><td class="RightAlign">1</td></tr>
+	<tr class="Data even"><th class="PrimaryKey RightAlign">6</th><td class="">幸福感的源泉</td><td class="">沟通与管理</td><td class="RightAlign">2</td><td class="">全校本科生</td><td class="">东九楼</td><td class="">B203</td><td class="RightAlign">3</td><td class="RightAlign">10</td><td class="">不点名不签到</td><td class="">mcc</td><td class="">考试</td><td class="RightAlign">1</td></tr>
+	<tr class="Data odd"><th class="PrimaryKey RightAlign">7</th><td class="">幸福感的源泉</td><td class="">沟通与管理</td><td class="RightAlign">2</td><td class="">全校本科生</td><td class="">东九楼</td><td class="">B203</td><td class="RightAlign">3</td><td class="RightAlign">10</td><td class="">不点名不签到</td><td class="">mcc</td><td class="">考试</td><td class="RightAlign">1</td></tr>
+	<tr class="Data even"><th class="PrimaryKey RightAlign">8</th><td class="">幸福感的源泉</td><td class="">沟通与管理</td><td class="RightAlign">2</td><td class="">全校本科生</td><td class="">东九楼</td><td class="">B203</td><td class="RightAlign">3</td><td class="RightAlign">10</td><td class="">不点名不签到</td><td class="">mcc</td><td class="">考试</td><td class="RightAlign">1</td></tr>
+	<tr class="Data odd"><th class="PrimaryKey RightAlign">9</th><td class="">幸福感的源泉</td><td class="">沟通与管理</td><td class="RightAlign">2</td><td class="">全校本科生</td><td class="">东九楼</td><td class="">B203</td><td class="RightAlign">3</td><td class="RightAlign">10</td><td class="">不点名不签到</td><td class="">mcc</td><td class="">考试</td><td class="RightAlign">1</td></tr>
+</table><br style="page-break-after: always">
+<h2>表格: message</h2>
+<h3>索引:</h3>
+<table border="0" cellspacing="0" summary="message" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>属性</th><th>备注</th></tr>
+	<tr class="Structure"><td  class="PrimaryKey">主索引</td><td>id</td><td>unique</td><td></td></tr>
+	<tr class="Structure"><td >message_user_id</td><td>message_user_id</td><td>&nbsp;</td><td></td></tr>
+</table><br>
+<h3>字段:</h3>
+<table border="0" cellspacing="0" summary="message" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>空</th><th>默认值</th><th>属性</th><th>备注</th></tr>
+	<tr class="Structure"><td class="PrimaryKey">id</td><td>int(11)</td><td>否</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>message_content</td><td>text</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>message_from_name</td><td>varchar(30)</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>message_data</td><td>datetime</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>message_user_id</td><td>int(11)</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</table><br>
+<h3>约束:</h3>
+<table border="0" cellspacing="0" summary="message" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>属性</th></tr>
+	<tr><th>message_ibfk_1</th><td>message_user_id -&gt; user.id</td><td></td></tr>
+</table><br>
+<h3>数据:</h3>
+<table border="0" cellspacing="0" summary="message" class="TableData">
+	<tr class="TableHeader"><th class="DataHeader PrimaryKey">id</th><th class="DataHeader">message_content</th><th class="DataHeader">message_from_name</th><th class="DataHeader">message_data</th><th class="DataHeader">message_user_id</th></tr>
+	<tr class="Data odd"><th class="PrimaryKey RightAlign">1</th><td class="">&lt;MEMO&gt;</td><td class="">mcc</td><td class="">2019-03-21 00:30:13</td><td class="RightAlign">1</td></tr>
+</table><br style="page-break-after: always">
+<h2>表格: role</h2>
+<h3>索引:</h3>
+<table border="0" cellspacing="0" summary="role" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>属性</th><th>备注</th></tr>
+	<tr class="Structure"><td  class="PrimaryKey">主索引</td><td>id</td><td>unique</td><td></td></tr>
+	<tr class="Structure"><td >role</td><td>role</td><td>unique</td><td></td></tr>
+</table><br>
+<h3>字段:</h3>
+<table border="0" cellspacing="0" summary="role" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>空</th><th>默认值</th><th>属性</th><th>备注</th></tr>
+	<tr class="Structure"><td class="PrimaryKey">id</td><td>int(11)</td><td>否</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>role</td><td>varchar(50)</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</table><br>
+<h3>数据:</h3>
+<table border="0" cellspacing="0" summary="role" class="TableData">
+	<tr class="TableHeader"><th class="DataHeader PrimaryKey">id</th><th class="DataHeader">role</th></tr>
+	<tr class="Data odd"><th class="PrimaryKey RightAlign">1</th><td class="">annoyance</td></tr>
+	<tr class="Data even"><th class="PrimaryKey RightAlign">2</th><td class="">user</td></tr>
+	<tr class="Data odd"><th class="PrimaryKey RightAlign">3</th><td class="">admin</td></tr>
+	<tr class="Data even"><th class="PrimaryKey RightAlign">4</th><td class="">super_admin</td></tr>
+</table><br style="page-break-after: always">
+<h2>表格: search_information</h2>
+<h3>索引:</h3>
+<table border="0" cellspacing="0" summary="search_information" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>属性</th><th>备注</th></tr>
+	<tr class="Structure"><td  class="PrimaryKey">主索引</td><td>id</td><td>unique</td><td></td></tr>
+	<tr class="Structure"><td >ix_search_information_search_date</td><td>search_date</td><td>&nbsp;</td><td></td></tr>
+	<tr class="Structure"><td >search_user_id</td><td>search_user_id</td><td>&nbsp;</td><td></td></tr>
+</table><br>
+<h3>字段:</h3>
+<table border="0" cellspacing="0" summary="search_information" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>空</th><th>默认值</th><th>属性</th><th>备注</th></tr>
+	<tr class="Structure"><td class="PrimaryKey">id</td><td>int(11)</td><td>否</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>search_information</td><td>varchar(50)</td><td>否</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>search_date</td><td>datetime</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>search_time</td><td>int(11)</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>search_user_id</td><td>int(11)</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</table><br>
+<h3>约束:</h3>
+<table border="0" cellspacing="0" summary="search_information" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>属性</th></tr>
+	<tr><th>search_information_ibfk_1</th><td>search_user_id -&gt; user.id</td><td></td></tr>
+</table><br>
+<h3>数据:</h3>
+<table border="0" cellspacing="0" summary="search_information" class="TableData">
+	<tr class="TableHeader"><th class="DataHeader PrimaryKey">id</th><th class="DataHeader">search_information</th><th class="DataHeader">search_date</th><th class="DataHeader">search_time</th><th class="DataHeader">search_user_id</th></tr>
+	<tr class="Data odd"><th class="PrimaryKey RightAlign">1</th><td class="">axx</td><td class="">2019-03-21 00:30:13</td><td class="RightAlign">9</td><td class="Null">&nbsp;</td></tr>
+</table><br style="page-break-after: always">
+<h2>表格: user</h2>
+<h3>索引:</h3>
+<table border="0" cellspacing="0" summary="user" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>属性</th><th>备注</th></tr>
+	<tr class="Structure"><td  class="PrimaryKey">主索引</td><td>id</td><td>unique</td><td></td></tr>
+	<tr class="Structure"><td >email</td><td>email</td><td>unique</td><td></td></tr>
+	<tr class="Structure"><td >name</td><td>name</td><td>unique</td><td></td></tr>
+	<tr class="Structure"><td >role_id</td><td>role_id</td><td>&nbsp;</td><td></td></tr>
+</table><br>
+<h3>字段:</h3>
+<table border="0" cellspacing="0" summary="user" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>空</th><th>默认值</th><th>属性</th><th>备注</th></tr>
+	<tr class="Structure"><td class="PrimaryKey">id</td><td>int(11)</td><td>否</td><td>&lt;auto_increment&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>name</td><td>varchar(30)</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>password</td><td>varchar(100)</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>email</td><td>varchar(30)</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>icon</td><td>varchar(200)</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>confirmed</td><td>tinyint(1)</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>role_id</td><td>int(11)</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</table><br>
+<h3>约束:</h3>
+<table border="0" cellspacing="0" summary="user" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>属性</th></tr>
+	<tr><th>user_ibfk_1</th><td>role_id -&gt; role.id</td><td></td></tr>
+</table><br>
+<h3>数据:</h3>
+<table border="0" cellspacing="0" summary="user" class="TableData">
+	<tr class="TableHeader"><th class="DataHeader PrimaryKey">id</th><th class="DataHeader">name</th><th class="DataHeader">password</th><th class="DataHeader">email</th><th class="DataHeader">icon</th><th class="DataHeader">confirmed</th><th class="DataHeader">role_id</th></tr>
+	<tr class="Data odd"><th class="PrimaryKey RightAlign">1</th><td class="">mcc</td><td class="">pbkdf2:sha256:50000$Nv6ffi0Q$06a9c1898cfdd71821a089665202d16b90bfbfe11509fae1664a25c73553d6a0</td><td class="">2561908792@qq.com</td><td class="">https://github.com/mcc321/mcc/blob/master/img/9.jpg?raw=true</td><td class="RightAlign">1</td><td class="Null">&nbsp;</td></tr>
+</table><br style="page-break-after: always">
+<h2>表格: user_search</h2>
+<h3>索引:</h3>
+<table border="0" cellspacing="0" summary="user_search" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>属性</th><th>备注</th></tr>
+	<tr class="Structure"><td >search_id</td><td>search_id</td><td>&nbsp;</td><td></td></tr>
+	<tr class="Structure"><td >user_id</td><td>user_id</td><td>&nbsp;</td><td></td></tr>
+</table><br>
+<h3>字段:</h3>
+<table border="0" cellspacing="0" summary="user_search" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>空</th><th>默认值</th><th>属性</th><th>备注</th></tr>
+	<tr class="Structure"><td>user_id</td><td>int(11)</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+	<tr class="Structure"><td>search_id</td><td>int(11)</td><td>是</td><td class="Null">&lt;空&gt;</td><td>&nbsp;</td><td>&nbsp;</td>	</tr>
+</table><br>
+<h3>约束:</h3>
+<table border="0" cellspacing="0" summary="user_search" class="TableObject">
+	<tr class="TableHeader StructureHeader"><th>名称</th><th>类型</th><th>属性</th></tr>
+	<tr><th>user_search_ibfk_1</th><td>user_id -&gt; user.id</td><td></td></tr>
+	<tr><th>user_search_ibfk_2</th><td>search_id -&gt; search_information.id</td><td></td></tr>
+</table><br>
+<h3>数据:</h3>
+<table border="0" cellspacing="0" summary="user_search" class="TableData">
+	<tr class="TableHeader"><th class="DataHeader">user_id</th><th class="DataHeader">search_id</th></tr>
+	<tr class="Data odd"><td class="RightAlign">1</td><td class="RightAlign">1</td></tr>
+</table><br style="page-break-after: always">
+</body>
+</html>
