@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 production.py
+development.py
 # C extensions
 *.so
 .idea

@@ -1,3 +1,4 @@
+import datetime
 #数据库配置
 SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root:zc0602@127.0.0.1/axx'
 
@@ -16,6 +17,8 @@ SECRET_KEY = 'super-secret'
 
 #JWT设置
 JWT_SECRET_KEY = 'mcc'
+JWT_AUTH_URL_RULE = '/authenticate'
+JWT_EXPIRATION_DELTA = datetime.timedelta(seconds=300)
 
 #是否开启debug
 DEBUG = True

@@ -30,7 +30,7 @@ def registerId():
                 email=form.email.data
                 if User.query.filter_by(name=name).first() is None:
                     if mail_auth(email):
-                        user=User(name=name,password=password,email=email,role=4)
+                        user=User(name=name,password=password,email=email,role="user")
                         db.session.add(user)
                         db.session.commit()
                         token = user.generate_activate_token()
@@ -92,13 +92,13 @@ def activate(token):
         if User.check_activate_token(self=current_user,token=token):
             dic=dict()
             dic['info']='activate success'
-            return redirect(url_for('auth.login'))
+            return jsonify({'StatusCode':200,'info':'注册成功'})
         else:
             dic=dict()
             dic['info']='activate fail'
-            return redirect(url_for('auth.register'))
+            return jsonify({'StatusCode': 400, 'info': '注册失败'})
     else:
-        mcc_print('none')
+        return jsonify({'StatusCode': 400, 'info': '注册失败'})
 
 
 

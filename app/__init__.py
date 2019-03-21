@@ -49,6 +49,7 @@ def create_app():
 
 
     #配置模块
+    #app.config.from_pyfile("config\\development.py")
     app.config.from_pyfile("config\\production.py")
 
 
@@ -91,7 +92,6 @@ def create_app():
         dic['message_from_name']='mcc'
         db_user_push(**dic)
     return app
-    session.permanent = True
 
 
 
