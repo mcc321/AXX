@@ -29,7 +29,7 @@
 >
 > Course与Comment是一对多
 
-详细的数据库信息[demo]()
+详细的数据库信息[demo](https://github.com/mcc321/AXX/blob/master/doc/axx.html)
 
 ##### 3.逻辑实现
 
