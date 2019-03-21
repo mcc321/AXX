@@ -12,7 +12,7 @@
 * User_search
 * Course
 
-#####2.简介
+##### 2.简介
 
 * User表，其构建连带包含Message ，Comment , Search_information
 * Role表用来存储用户类型
@@ -29,7 +29,7 @@
 >
 > Course与Comment是一对多
 
-详细的数据库信息[demo](https://github.com/mcc321/AXX/blob/master/doc/axx.html)
+详细的数据库信息[demo](https://mcc321.github.io/mysql.html)
 
 ##### 3.逻辑实现
 
