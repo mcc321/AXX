@@ -39,6 +39,7 @@ pip-delete-this-directory.txt
 htmlcov/
 .tox/
 .coverage
+.idea
 .coverage.*
 .cache
 nosetests.xml
@@ -60,6 +61,8 @@ db.sqlite3
 # Flask stuff:
 instance/
 .webassets-cache
+config/
+.idea/
 
 # Scrapy stuff:
 .scrapy

@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="55adbe4a-8451-4546-a2ce-e63b884bce80" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/axx.html" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,8 +74,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+            <state relative-caret-position="171">
+              <caret line="63" column="7" selection-start-line="63" selection-start-column="7" selection-end-line="63" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -292,7 +289,7 @@
       <workItem from="1553008017401" duration="3002000" />
       <workItem from="1553087903423" duration="7113000" />
       <workItem from="1553125549469" duration="6280000" />
-      <workItem from="1553143035618" duration="461000" />
+      <workItem from="1553143035618" duration="762000" />
     </task>
     <task id="LOCAL-00001" summary="完成了登陆模块的调试，明天准备写相关的页面路由">
       <created>1553000254982</created>
@@ -326,7 +323,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80184000" />
+    <option name="totallyTimeSpent" value="80485000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -342,10 +339,10 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.502193" side_tool="true" weight="0.21018593" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49780703" visible="true" weight="0.2166532" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49780703" visible="true" weight="0.2166532" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" weight="0.32867134" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.20979021" />
+      <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.20979021" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="调试" order="4" />
@@ -712,8 +709,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+        <state relative-caret-position="171">
+          <caret line="63" column="7" selection-start-line="63" selection-start-column="7" selection-end-line="63" selection-end-column="7" />
         </state>
       </provider>
     </entry>
