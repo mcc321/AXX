@@ -113,6 +113,14 @@ class User(UserMixin,db.Model):
             and 'course_time_end' in kwargs and 'course_attr' in kwargs and 'course_teacher_name' in kwargs \
             and 'course_check_type' in kwargs:
             self.course.append(Course(**kwargs))
+        if 'course_full' in kwargs:
+            self.course.append(kwargs['course_full'])
+        if 'comment_full' in kwargs:
+            self.comment.append(kwargs['comment_full'])
+        if 'message_full' in kwargs:
+            self.message.append(kwargs['message_full'])
+        if 'search_information_full' in kwargs:
+            self.search_information.append(kwargs['search_information_full'])
 
 
     def generate_activate_token(self, expires_in=3600):
@@ -137,6 +145,17 @@ class User(UserMixin,db.Model):
             db.session.add(user)
             db.session.commit()
         return True
+    def get_recent_search(self):
+        tmp = self.search_information.all()
+        tmp_len = len(tmp)
+        search_information = []
+        if tmp_len > 10:
+            for i in tmp[-1:-10]:
+                search_information.append(i.search_information)
+        else:
+            for i in tmp[::-1]:
+                search_information=i.search_information
+        return search_information
 
     @staticmethod
     def get(id):
@@ -165,9 +184,14 @@ class Message(db.Model):
             self.message_content = kwargs['message_content']
         if 'message_from_name' in kwargs:
             self.message_from_name = kwargs['message_from_name']
+        if 'message_user_full' in kwargs:
+            self.user = kwargs['message_user_full']
     def get_message(self):
         dic={'message_content':self.message_content ,'message_from_name':self.message_from_name ,'message_data':self.message_data}
         return dic
+    def to_json(self):
+        return {'message_content':self.message_content,'message_from_name':self.message_from_name}
+
 
 
 
@@ -217,6 +241,13 @@ class Comment(db.Model):
             self.comment_course_id=int(kwargs['comment_course_id'])
         if 'comment_on_user_id' in kwargs:
             self.comment_on_user_id=int(kwargs['comment_on_user_id'])
+        if 'comment_user_full' in kwargs:
+            self.user=kwargs['comment_user_full']
+        if 'comment_course_full' in kwargs:
+            self.comment=kwargs['comment_course_full']
+    def to_json(self):
+        return {'comment_body':self.comment_body,'comment_course_id':self.comment_course_id\
+                ,'comment_on_user_id':self.comment_on_user_id}
 
     @staticmethod
     def on_changed_body(target,value,oldvalue,initiator):
@@ -241,16 +272,21 @@ class Search_information(db.Model):
         super().__init__()
         if 'search_information' in kwargs:
             self.search_information=kwargs['search_information']
-    def get_popular_search_information(self):
+        if 'search_user_full' in kwargs:
+            self.user=kwargs['search_user_full']
+
+
+    @staticmethod
+    def get_popular_search_information():
         tmp = Search_information.query.order_by(Search_information.search_time.desc()).all() ##反向排序
         tmp_len=len(tmp)
         search_information = []
         if tmp_len>=10:
             for i in range(10):
-                search_information.append(tmp[i])
+                search_information.append(tmp[i].search_information)
         else:
             for i in range(tmp_len):
-                search_information.append(tmp[i])
+                search_information.append(tmp[i].search_information)
         return search_information
 
 
@@ -304,6 +340,10 @@ class Course(db.Model):
             self.course_teacher_name=kwargs['course_teacher_name']
         if 'course_check_type' in kwargs:
             self.course_check_type=course_check_types[int(kwargs['course_check_type'])]
+        if 'course_user' in kwargs:
+            self.user = kwargs['course_user']
+        if 'course_comment' in kwargs:
+            self.comment.append(kwargs['course_comment'])
 
 
 

@@ -17,113 +17,106 @@ from flask_jwt import JWT, jwt_required, current_identity
 
 
 # #-----------------------------------------------通用模块------------------------------------------------
-#
-#
-#
-#
-#
-# # @main.route('/',methods=['POST','GET'])
-# # def index():
-# #     from ..auth import auth
-# #     return render_template('ForWindowsIndex.html')
-#
-#
-# # @main.route('/<path:path>',methods=['GET','POST'])
-# # def any_root_path(path):
-# #     return render_template('index.html')
-#
-#
-#
-# # @main.route('/fake')
-# # def makeFake():
-# #     # userFake(10)
-# #     articleFake(10)
-# #     commentFake(30)
-# #     return "success"
-#
-#
-#
-# #--------------------------------博文操作模块--------------------------------------------------
-# @main.route('/blog_article_r',methods=['POST','GET'])
-# def blog_article_r():
-#     dic=json_loads()
-#     if 'id' in dic:
-#         if db_article_auth(dic['id']):
-#             article=Article.query.filter_by(id=dic['id']).first()
-#             user=User.query.filter_by(name=article.writer).first()
-#             if current_user.pri>=user.pri:
-#                 dic=make_json_dic(200,article_id=article.id,article_content=article.content,article_writer=article.writer,date=article.date)
-#                 return jsonify(dic)
-#             else:
-#                 dic=make_json_dic(402,article_id=article.id,article_content=article.content,article_writer=article.writer,date=article.date)
-#                 return jsonify(dic)
-#         else:
-#             dic=make_json_dic(404)
-#             return jsonify(dic)
-#     else:
-#         dic=make_json_dic(402)
-#     return jsonify(dic)
-#
-#
-#
-#
-#
-# @main.route('/admin/blog_article_w',methods=['POST','GET'])
-# @login_required
-# def blog_article_w():
-#     if current_user.is_authenticated:
-#         dic=json_loads()
-#         if 'title' in dic and 'content' in dic:
-#             article=Article(writer=current_user.name,title=dic["title"],content=dic["content"],date=datetime.datetime.utcnow(),user_id=current_user.id)
-#             db.session.add(article)
-#             db.session.commit()
-#             dic2=make_json_dic(200)
-#             return jsonify(dic2)
-#         else:
-#             dic2=make_json_dic(402)
-#             return jsonify(dic2)
-#     else:
-#         dic2=make_json_dic(402)
-#         return jsonify(dic2)
-#
-#
-#
-# #修改博文
-# @main.route('/admin/blog_article_m',methods=['POST','GET'])
-# @login_required
-# def blog_article_m():
-#     dic=json_loads()
-#     article=Article.query.filter_by(id=dic['id']).first()
-#     if current_user.name==article.writer or current_user.role.name=="Adminstrator":
-#         article.title=dic["title"]
-#         article.content=dic["content"]
-#         db.session.add(article)
-#         db.session.commit()
-#         dic2=make_json_dic(200)
-#         return jsonify(dic2)
-#     else:
-#         dic2=make_json_dic(303,info="权限不够")
-#         return jsonify(dic2)
-#
-# #删除博文
-# @main.route("/admin/blog_article_d",methods=['POST','GET'])
-# @login_required
-# def blog_article_d():
-#         dic=json_loads()
-#         article=Article.query.filter_by(id=dic["id"]).first()
-#         if current_user.name==article.writer or current_user.role.name=="Adminstrator":
-#             db.session.delete(article)
-#             db.session.commit()
-#             dic2=make_json_dic(200)
-#             return jsonify(dic2)
-#         else:
-#             dic2=make_json_dic(303,info="权限不够")
-#             return jsonify(dic2)
-#
-#
-#
-#
-#
+@main.route('/',methods=['POST','GET'])
+def index():
+    from ..auth import auth
+    return render_template('ForWindowsIndex.html')
+
+
+@main.route('/<path:path>',methods=['GET','POST'])
+def any_root_path(path):
+    return render_template('index.html')
+
+
+
+@main.route('/fake')
+def makeFake():
+    # userFake(10)
+    userFake(10)
+    commentFake(30)
+    courseFake(10)
+    return "success"
+
+
+
+
+
+
+#---------------------------------------------------------------------------------
+#---------------------------------------user路由----------------------------------
+@main.route("/user/information",methods=['POST','GET'])
+@jwt_required()
+def user_information():
+    dic=json_loads()
+    db_user_push(**dic)
+    user = User.query.filter_by(id=current_identity.id).first()
+    return jsonify({'icon':user.icon,'name':user.name,'email':user.email})
+
+
+@main.route("/search",methods=['POST','GET'])
+@jwt_required()
+def search():
+    if current_identity:
+        user = User.query.filter_by(id=current_identity.id).first()
+        return jsonify({'StatusCode':200,"most_popular_search":Search_information.get_popular_search_information()\
+                           ,'user_recent_search':user.get_recent_search()})
+    else:
+        return jsonify({'StatusCode': 200, "most_popular_search": Search_information.get_popular_search_information()})
+
+
+@main.route("/user/messages",methods=['POST','GET'])
+@jwt_required()
+def user_messages():
+    user = User.query.filter_by(id=current_identity.id).first()
+    dic=json_loads()
+    current = int(dic["current"])
+    pagesize=int(dic["pagesize"])
+    pagination = user.message.paginate(
+                         page=current,
+                         per_page=pagesize,
+                         error_out=False
+                     )
+    messages=pagination.items
+    prev = None
+    if pagination.has_prev:
+        prev=url_for("main.user_messages",page=current-1,_external=True)
+    next = None
+    if pagination.has_next:
+        next=url_for("main.user_messages",page=current+1,_external=True)
+    return jsonify({
+                       "message":[message.to_json() for message in messages],
+                       "prev":prev,
+                       "next":next,
+                       "total":pagination.total#记录总数
+                   })
+
+@main.route("/user/comments",methods=['POST','GET'])
+@jwt_required()
+def user_comments():
+    user = User.query.filter_by(id=current_identity.id).first()
+    dic=json_loads()
+    current = int(dic["current"])
+    pagesize=int(dic["pagesize"])
+    pagination = user.comment.paginate(
+                         page=current,
+                         per_page=pagesize,
+                         error_out=False
+                     )
+    comments=pagination.items
+    prev = None
+    if pagination.has_prev:
+        prev=url_for("main.user_comments",page=current-1,_external=True)
+    next = None
+    if pagination.has_next:
+        next=url_for("main.user_comments",page=current+1,_external=True)
+    return jsonify({
+                       "message":[comment.to_json() for comment in comments],
+                       "prev":prev,
+                       "next":next,
+                       "total":pagination.total#记录总数
+                   })
+
+
 # #加载博文列表
 # @main.route("/admin/blogList",methods=['POST','GET'])
 # def loadBlogList():
@@ -409,7 +402,7 @@ def test():
 
 @main.route('/test2')
 @jwt_required()
-def protected():
+def test2():
     user=User.query.filter_by(id=current_identity.id).first()
     return jsonify({'StatusCode':200,'username':user.name,'info':'测试成功'})
 

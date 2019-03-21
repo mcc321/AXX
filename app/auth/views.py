@@ -66,6 +66,7 @@ def login():
                         session["username"]=username
                         session["password"]=password
                         login_user(user,True)
+                        session.permanent = True
                         return jsonify({"StatusCode": 200, "info": "ok"})
                     else:
                         return jsonify({"StatusCode":300,"info":"账号密码错误或邮箱未激活"})

@@ -7,7 +7,7 @@ import datetime
 from sqlalchemy.exc import SQLAlchemyError
 from flask_login import current_user
 from werkzeug.security import generate_password_hash
-
+from flask_jwt import JWT, jwt_required, current_identity
 
 
 
@@ -35,24 +35,66 @@ def db_user_auth(name,password):
 def db_user_push(**kwargs):
     if 'name' in kwargs:
         user = User.query.filter_by(name=kwargs['name']).first()
-        if user is None:
-            user = User(**kwargs)
+    if current_user.is_authenticated:
+        user = current_user._get_current_object()
+    if current_identity:
+        user = User.query.filter_by(id=current_identity.id).first()
+    else:
+        user=User(**kwargs)
+    if 'name' in kwargs:
+        user.name=kwargs['name']
+    if 'password' in kwargs:
+        user.password=generate_password_hash(kwargs['password'])
+    if 'confirmed' in kwargs:
+        user.confirmed = bool(kwargs['confirmed'])
+    if 'email' in kwargs:
+        user.email = kwargs['email']
+    if 'icon' in kwargs:
+        user.icon=kwargs['icon']
+    if 'search_information' in kwargs:
+        tmp=Search_information.query.filter_by(search_information=kwargs['search_information']).first()
+        if tmp:
+            tmp.search_time+=1
+            if tmp not in user.search_information:
+                user.search_information.append(Search_information(**kwargs))
         else:
-            user.name=kwargs['name']
+            user.search_information.append(Search_information(**kwargs))
+    if 'comment_body' in kwargs and 'comment_course_id' in kwargs and 'comment_on_user_id' in kwargs:
+        user.comment.append(Comment(**kwargs))
+    if 'message_content' in kwargs and 'message_from_user_name' in kwargs:
+        user.message.append(Message(message_content=kwargs['message_content'],message_from_name=kwargs['message_from_name']))
+    if 'role' in kwargs:
+        user.Role = Role.query.filter_by(role=kwargs['role']).first()
+    if 'course_name' in kwargs and 'course_name' in kwargs and 'course_score' in kwargs and 'course_target' in kwargs \
+            and 'course_address' in kwargs and 'course_class_num' in kwargs and 'course_time_start' in kwargs \
+            and 'course_time_end' in kwargs and 'course_attr' in kwargs and 'course_teacher_name' in kwargs \
+            and 'course_check_type' in kwargs:
+        user.course.append(Course(**kwargs))
+    db.session.add(user)
+    db.session.commit()
+    return user
+
+
+
+
+def db_user_push_tmp(**kwargs):
+    if 'name' in kwargs:
+        user = User.query.filter_by(name=kwargs['name']).first()
+        if user:
+            if 'name' in kwargs:
+                user.name = kwargs['name']
             if 'password' in kwargs:
-                user.password=generate_password_hash(kwargs['password'])
+                user.password = generate_password_hash(kwargs['password'])
             if 'confirmed' in kwargs:
                 user.confirmed = bool(kwargs['confirmed'])
             if 'email' in kwargs:
                 user.email = kwargs['email']
             if 'icon' in kwargs:
-                user.icon=kwargs['icon']
+                user.icon = kwargs['icon']
             if 'search_information' in kwargs:
-                tmp=Search_information.query.filter_by(search_information=kwargs['search_information']).first()
+                tmp = Search_information.query.filter_by(search_information=kwargs['search_information']).first()
                 if tmp:
-                    tmp.search_time+=1
-                    db.session.add(tmp)
-                    session_commit()
+                    tmp.search_time += 1
                     if tmp not in user.search_information:
                         user.search_information.append(Search_information(**kwargs))
                 else:
@@ -60,7 +102,8 @@ def db_user_push(**kwargs):
             if 'comment_body' in kwargs and 'comment_course_id' in kwargs and 'comment_on_user_id' in kwargs:
                 user.comment.append(Comment(**kwargs))
             if 'message_content' in kwargs and 'message_from_user_name' in kwargs:
-                user.message.append(Message(message_content=kwargs['message_content'],message_from_name=kwargs['message_from_name']))
+                user.message.append(
+                    Message(message_content=kwargs['message_content'], message_from_name=kwargs['message_from_name']))
             if 'role' in kwargs:
                 user.Role = Role.query.filter_by(role=kwargs['role']).first()
             if 'course_name' in kwargs and 'course_name' in kwargs and 'course_score' in kwargs and 'course_target' in kwargs \
@@ -68,11 +111,16 @@ def db_user_push(**kwargs):
                     and 'course_time_end' in kwargs and 'course_attr' in kwargs and 'course_teacher_name' in kwargs \
                     and 'course_check_type' in kwargs:
                 user.course.append(Course(**kwargs))
+        else:
+            user=User(**kwargs)
         db.session.add(user)
         db.session.commit()
-        return True
+        return user
     else:
-        return False
+        return None
+
+
+
 
 
 def db_message_delete(id):

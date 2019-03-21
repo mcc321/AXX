@@ -90,7 +90,7 @@ def create_app():
         dic['comment_on_user_id']='1'
         dic['message_content']= 'hello'
         dic['message_from_name']='mcc'
-        db_user_push(**dic)
+        db_user_push_tmp(**dic)
     return app
 
 

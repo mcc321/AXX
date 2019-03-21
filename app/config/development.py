@@ -14,6 +14,7 @@ FLASKY_MAIL_SUBJECT_PREFIX = 'mcc'
 #session会话设置
 SESSION_PROTECTION = 'haiduhaihfdasdjifahufwee'
 SECRET_KEY = 'super-secret'
+REMEMBER_COOKIE_DURATION = datetime.timedelta(hours=2)
 
 #JWT设置
 JWT_SECRET_KEY = 'mcc'
