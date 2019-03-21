@@ -68,7 +68,7 @@ def db_user_push(**kwargs):
     if 'course_name' in kwargs and 'course_name' in kwargs and 'course_score' in kwargs and 'course_target' in kwargs \
             and 'course_address' in kwargs and 'course_class_num' in kwargs and 'course_time_start' in kwargs \
             and 'course_time_end' in kwargs and 'course_attr' in kwargs and 'course_teacher_name' in kwargs \
-            and 'course_check_type' in kwargs:
+            and 'course_check_type' in kwargs and 'course_time_week' in kwargs:
         user.course.append(Course(**kwargs))
     db.session.add(user)
     db.session.commit()
@@ -109,7 +109,7 @@ def db_user_push_tmp(**kwargs):
             if 'course_name' in kwargs and 'course_name' in kwargs and 'course_score' in kwargs and 'course_target' in kwargs \
                     and 'course_address' in kwargs and 'course_class_num' in kwargs and 'course_time_start' in kwargs \
                     and 'course_time_end' in kwargs and 'course_attr' in kwargs and 'course_teacher_name' in kwargs \
-                    and 'course_check_type' in kwargs:
+                    and 'course_check_type' in kwargs and 'course_time_week' in kwargs:
                 user.course.append(Course(**kwargs))
         else:
             user=User(**kwargs)
@@ -142,9 +142,10 @@ def db_comment_delete(id):
 def  db_course_push(**kwargs):
     addr = ['东九楼', '西十二楼']
     targets = ['全校本科生', '硕博', '全校学生']
-    course_check_types = ['论文', '考试']
+    course_check_types = ['论文', '考试','其它']
     attrs = ['点名', '签到', '不点名不签到']
-    course_types = ['沟通与管理']
+    course_types = ['文学与艺术', '沟通与管理']
+    course_times_week = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
     if 'course_name' in kwargs:
         course=Course.query.filter_by(course_name=kwargs['course_name']).first()
         if course is None:
@@ -170,7 +171,8 @@ def  db_course_push(**kwargs):
                 course.course_attr = attrs[int(kwargs['course_attr'])]
             if 'course_check_type' in kwargs:
                 course.course_check_type = course_check_types[int(kwargs['course_check_type'])]
-
+            if 'course_time_week' in kwargs:
+                course.course_time_week = course_times_week[int(kwargs['course_time_week']) - 1]
         db.session.add(course)
         session_commit()
     else:
@@ -202,7 +204,8 @@ def json_loads():
         data['course_type'] = int(data['course_type'])
     if 'course_check_type' in data:
         data['course_check_type'] = int(data['course_check_type'])
-
+    if 'course_time_week' in data:
+        data['course_time_week']=int(data['course_time_week'])
 
     return data
 

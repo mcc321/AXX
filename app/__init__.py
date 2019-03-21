@@ -64,33 +64,34 @@ def create_app():
     #数据库初始化
     with app.app_context():
         db.create_all()
-        from .models import Role
-        Role.insert_roles()
-        dic=dict()
-        dic['name']='mcc'
-        dic['email']='2561908792@qq.com'
-        dic['icon']='https://github.com/mcc321/mcc/blob/master/img/9.jpg?raw=true'
-        dic['confirmed']=True
-        dic['password']="mcc"
-        dic['search_information']="axx"
-        dic['comment_body']='hello everyone!'
-        dic['comment_course_id'] = "1"
-        dic['role']='admin'
-        dic['course_name']='幸福感的源泉'
-        dic['course_type']='0'
-        dic['course_score']="2"
-        dic['course_target']="0"
-        dic['course_address']="0"
-        dic['course_class_num']='B203'
-        dic['course_time_start']="3"
-        dic['course_time_end']="10"
-        dic['course_attr']="2"
-        dic['course_teacher_name']='mcc'
-        dic['course_check_type']='1'
-        dic['comment_on_user_id']='1'
-        dic['message_content']= 'hello'
-        dic['message_from_name']='mcc'
-        db_user_push_tmp(**dic)
+        # from .models import Role
+        # Role.insert_roles()
+        # dic=dict()
+        # dic['name']='mcc'
+        # dic['email']='2561908792@qq.com'
+        # dic['icon']='https://github.com/mcc321/mcc/blob/master/img/9.jpg?raw=true'
+        # dic['confirmed']=True
+        # dic['password']="mcc"
+        # dic['search_information']="axx"
+        # dic['comment_body']='hello everyone!'
+        # dic['comment_course_id'] = "1"
+        # dic['role']='admin'
+        # dic['course_name']='幸福感的源泉'
+        # dic['course_type']='0'
+        # dic['course_score']="2"
+        # dic['course_target']="0"
+        # dic['course_address']="0"
+        # dic['course_class_num']='B203'
+        # dic['course_time_start']="3"
+        # dic['course_time_end']="10"
+        # dic['course_attr']="2"
+        # dic['course_teacher_name']='mcc'
+        # dic['course_check_type']='1'
+        # dic['comment_on_user_id']='1'
+        # dic['message_content']= 'hello'
+        # dic['message_from_name']='mcc'
+        # dic['course_time_week']='1'
+        # db_user_push_tmp(**dic)
     return app
 
 

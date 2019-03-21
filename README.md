@@ -54,6 +54,7 @@
 注册登录的附加功能，邮件验证功能，只有确认后用户才能登陆[demo]()
 
 * 基本信息反馈，通过相应的路由实现[demo]()
+* 全部测试示例[demo](https://documenter.getpostman.com/view/6263986/S17qTpnT)
 
 ![mcc](https://github.com/mcc321/mcc/blob/master/img/3.jpg?raw=true)
 

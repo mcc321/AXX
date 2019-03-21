@@ -51,7 +51,8 @@ def courseFake(count=100):
             course_attr = random.choice([0,1,2]),
             course_teacher_name = random.choice(first_name) + random.choice(second_name),
             course_check_type = random.choice([0,1]),
-            user=u
+            course_time_week = random.randint(1,7),
+            course_user=u
         )
         db.session.add(course)
         try:
@@ -71,8 +72,8 @@ def commentFake(count=450):
         c=Comment(
             comment_body=forgery_py.lorem_ipsum.sentences(randint(1,2)),
             comment_on_user_id=random.randint(1,user_count),
-            user=u,
-            course=c
+            comment_user_full=u,
+            comment_course_full=c
         )
         db.session.add(c)
         try:

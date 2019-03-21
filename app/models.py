@@ -111,7 +111,7 @@ class User(UserMixin,db.Model):
         if 'course_name' in kwargs and 'course_name' in kwargs and 'course_score' in kwargs and 'course_target' in kwargs \
             and 'course_address' in kwargs and 'course_class_num' in kwargs and 'course_time_start' in kwargs \
             and 'course_time_end' in kwargs and 'course_attr' in kwargs and 'course_teacher_name' in kwargs \
-            and 'course_check_type' in kwargs:
+            and 'course_check_type' in kwargs and 'course_time_week' in kwargs:
             self.course.append(Course(**kwargs))
         if 'course_full' in kwargs:
             self.course.append(kwargs['course_full'])
@@ -178,7 +178,8 @@ class Message(db.Model):
     message_from_name = db.Column(db.String(30),nullable=False)
     message_data = db.Column(db.DateTime,default = datetime.datetime.utcnow())
     message_user_id = db.Column(db.Integer , db.ForeignKey('user.id'))
-    def __init__(self,**kwargs):
+
+    def __init__(self , *args, **kwargs):
         super().__init__()
         if 'message_content' in kwargs:
             self.message_content = kwargs['message_content']
@@ -309,15 +310,17 @@ class Course(db.Model):
     course_attr = db.Column(db.String(20),nullable=False)
     course_teacher_name = db.Column(db.String(20),nullable=False)
     course_check_type = db.Column(db.String(20),nullable=False)
+    course_time_week = db.Column(db.String(20),nullable=False)
     comment = db.relationship('Comment',backref = 'course', lazy='dynamic',cascade='save-update,delete,merge')
     course_user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     def __init__(self,**kwargs):
         super().__init__()
-        addr=['东九楼','西十二楼']
+        addr = ['东九楼', '西十二楼']
         targets = ['全校本科生', '硕博', '全校学生']
-        course_check_types=['论文','考试']
-        attrs = ['点名','签到','不点名不签到']
-        course_types=['沟通与管理']
+        course_check_types = ['论文', '考试', '其它']
+        attrs = ['点名', '签到', '不点名不签到']
+        course_types = ['文学与艺术','沟通与管理']
+        course_times_week = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
         if 'course_name' in kwargs:
             self.course_name=kwargs['course_name']
         if 'course_type' in kwargs:
@@ -344,7 +347,12 @@ class Course(db.Model):
             self.user = kwargs['course_user']
         if 'course_comment' in kwargs:
             self.comment.append(kwargs['course_comment'])
-
+        if 'course_time_week' in kwargs:
+            self.course_time_week=course_times_week[int(kwargs['course_time_week'])-1]
+    def to_json(self):
+        return {'course_name':self.course_name,'course_teacher_name':self.course_teacher_name,\
+                'course_type':self.course_type,'course_time_week':self.course_time_week,'course_address':self.course_address,\
+                'course_score':self.course_score,'course_check_type':self.course_check_type,'course_attr':self.course_attr}
 
 
 
