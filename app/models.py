@@ -75,6 +75,10 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(30),unique=True)
     icon = db.Column(db.String(200),default="https://github.com/mcc321/mcc/blob/master/img/9.jpg?raw=true")
     confirmed = db.Column(db.Boolean,default=False)
+    
+    # is_authenticated = db.Column(db.Boolean)
+    # is_active = db.Column(db.Boolean)
+    # is_anonymous = db.Column(db.Boolean)
 
     search_information = db.relationship('Search_information', backref = 'user', lazy='dynamic',cascade='save-update,delete,merge',secondary=user_search)
     comment = db.relationship('Comment',backref = 'user', lazy='dynamic',cascade='save-update,delete,merge')
