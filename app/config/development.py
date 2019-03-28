@@ -6,9 +6,9 @@ SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root:zc0602@127.0.0.1/axx'
 MAIL_SERVER = 'smtp.qq.com'
 MAIL_PORT = 465
 MAIL_USE_SSL = True
-MAIL_USERNAME = '2561908792@qq.com'
-MAIL_PASSWORD = 'cvrdbidruakuecce'
-FLASKY_MAIL_SENDER = 'Admin <2561908792@qq.com>'
+MAIL_USERNAME = '@qq.com'
+MAIL_PASSWORD = ''
+FLASKY_MAIL_SENDER = 'Admin <@qq.com>'
 FLASKY_MAIL_SUBJECT_PREFIX = 'mcc'
 
 #session会话设置
